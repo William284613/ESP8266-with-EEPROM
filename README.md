@@ -26,7 +26,8 @@ WILLIAM NG WEI YI	284613
 
 **Component Wiring**
 
-![image](https://github.com/William284613/ESP8266-with-EEPROM/assets/92504689/87e818b9-8b32-4a78-9e47-b41a80fd53fa)
+![image](https://github.com/William284613/ESP8266-with-EEPROM/assets/92504689/685c98d2-3114-4c1d-8b4a-3a49469742a7)
+
 
 
 ![image](https://github.com/William284613/ESP8266-with-EEPROM/assets/92504689/661a6924-596f-4ff9-a63c-95bc901845da)
