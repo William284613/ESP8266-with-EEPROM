@@ -145,40 +145,40 @@ boolean testWiFi() {
 }
 
 void writeData(String ssid, String password, String deviceID, String outputStatus) {
-  Serial.println("Writing to EEPROM");
+  Serial.println("Writing to EEPROM"); // Print a message to the serial monitor indicating the start of the write process
 
   // Write SSID to EEPROM
-  for (int i = 0; i < 32; i++) {
-    if (i < ssid.length()) {
-      EEPROM.write(i, ssid[i]); // Write SSID character to EEPROM
-    } else {
-      EEPROM.write(i, 0); // Write 0 if SSID is shorter than 32 characters
+  for (int i = 0; i < 32; i++) { // Loop through the first 32 bytes of EEPROM
+    if (i < ssid.length()) { // If the current index is less than the length of the SSID string
+      EEPROM.write(i, ssid[i]); // Write the character from the SSID string to the current EEPROM address
+    } else { // If the current index is greater than or equal to the length of the SSID string
+      EEPROM.write(i, 0); // Write a null character (0) to the current EEPROM address
     }
   }
 
   // Write Password to EEPROM
-  for (int i = 32; i < 64; i++) {
-    if (i - 32 < password.length()) {
-      EEPROM.write(i, password[i - 32]); // Write Password character to EEPROM
-    } else {
-      EEPROM.write(i, 0); // Write 0 if Password is shorter than 32 characters
+  for (int i = 32; i < 64; i++) { // Loop through the next 32 bytes of EEPROM (from address 32 to 63)
+    if (i - 32 < password.length()) { // If the current index minus 32 is less than the length of the Password string
+      EEPROM.write(i, password[i - 32]); // Write the character from the Password string to the current EEPROM address
+    } else { // If the current index minus 32 is greater than or equal to the length of the Password string
+      EEPROM.write(i, 0); // Write a null character (0) to the current EEPROM address
     }
   }
 
   // Write Device ID to EEPROM
-  for (int i = 64; i < 96; i++) {
-    if (i - 64 < deviceID.length()) {
-      EEPROM.write(i, deviceID[i - 64]); // Write Device ID character to EEPROM
-    } else {
-      EEPROM.write(i, 0); // Write 0 if Device ID is shorter than 32 characters
+  for (int i = 64; i < 96; i++) { // Loop through the next 32 bytes of EEPROM (from address 64 to 95)
+    if (i - 64 < deviceID.length()) { // If the current index minus 64 is less than the length of the Device ID string
+      EEPROM.write(i, deviceID[i - 64]); // Write the character from the Device ID string to the current EEPROM address
+    } else { // If the current index minus 64 is greater than or equal to the length of the Device ID string
+      EEPROM.write(i, 0); // Write a null character (0) to the current EEPROM address
     }
   }
 
   // Write Output Status to EEPROM
-  EEPROM.write(96, (outputStatus == "ON") ? '1' : '0'); // Write '1' for ON and '0' for OFF
+  EEPROM.write(96, (outputStatus == "ON") ? '1' : '0'); // Write '1' if the Output Status is "ON" and '0' if it is "OFF" to EEPROM address 96
 
-  EEPROM.commit(); // Commit the changes to EEPROM
-  Serial.println("Write successful");
+  EEPROM.commit(); // Commit the changes to EEPROM to ensure they are saved
+  Serial.println("Write successful"); // Print a message to the serial monitor indicating the successful completion of the write process
 }
 
 void readData() {
